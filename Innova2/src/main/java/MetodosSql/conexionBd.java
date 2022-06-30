@@ -20,7 +20,7 @@ class ConexionBD {
     public static String url = "jdbc:mysql://localhost:3307/login_bd";
     public static String usuario = "root";
     public static String contraseña = "123456789";
-    public static String clase = "com.mysql.jdbc.Driver";
+    public static String clase = "com.mysql.cj.jdbc.Driver";
     public static Connection conectar(){
         Connection conexion = null;
         

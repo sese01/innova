@@ -29,18 +29,65 @@ public class MetodosSql {
         try {
             conexion = ConexionBD.conectar();
             sentencia_preparada = conexion.prepareStatement(sentencia_guardar);
-            sentencia_preparada.setString(1, correo);
+            sentencia_preparada.setString(3, correo);
             sentencia_preparada.setString(1, nombre);
-            sentencia_preparada.setString(1, contraseña);
-            sentencia_preparada.setString(1, apellidos);
+            sentencia_preparada.setString(4, contraseña);
+            sentencia_preparada.setString(2, apellidos);
 
             resultado = sentencia_preparada.executeUpdate();
             sentencia_preparada.close();
-        } catch (Exception e) {
-            System.out.println("e");
+            conexion.close();
+        } 
+        catch (Exception e) {
+            System.out.println(e);
         }
         return resultado;
 
+    }
+
+    public static String buscarNombre(String correo) {
+        String busqueda_nombre = null;
+        Connection conexion = null;
+
+        try {
+            conexion = ConexionBD.conectar();
+            String sentencia_buscar = ("SELECT nombre,apellidos FROM usuarios WHERE correo = '" + correo + "'");
+            sentencia_preparada = conexion.prepareStatement(sentencia_buscar);
+            resultado = sentencia_preparada.executeQuery();
+            if (resultado.next()) {
+                String nombre = resultado.getString("nombre");
+                String apellidos = resultado.getString("apellidos");
+                busqueda_nombre = (nombre + " " + apellidos);
+
+            }
+            conexion.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return busqueda_nombre;
+    }
+    
+    
+    public static String buscarUsuarioRegistrado(String correo, String contraseña){
+    String busqueda_usuarios = null;
+    Connection conexion = null;
+    
+        try {
+            conexion = ConexionBD.conectar();
+            String sentencia_buscar_usuario = ("SELECT nombre,correo,contraseña FROM usuarios WHERE correo = '" + correo + "' && contraseña = '"+contraseña+"'");
+            sentencia_preparada = conexion.prepareStatement(sentencia_buscar_usuario);
+            resultado = sentencia_preparada.executeQuery();
+            if(resultado.next()){
+            busqueda_usuarios = "usuario Encontrado";
+            
+            }else{
+            busqueda_usuarios = "no encontrado";
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return busqueda_usuarios;
     }
 
 }

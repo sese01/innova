@@ -5,6 +5,7 @@
 package com.mycompany.innova2;
 
 import MetodosSql.MetodosSql;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -152,8 +153,13 @@ public class userSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
+ int i = metodos.guardar(nameText.getText(), lastNameText.getText(), emailText.getText(), passwordText.getText());
+        if (i > 0) {
+            JOptionPane.showMessageDialog(this, "datos Guardados Correctamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "no se pudo gurdar");
+        }        
         
-        metodos.guardar(nameText.getText(), lastNameText.getText(), emailText.getText(), passwordText.getText());
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
     /**

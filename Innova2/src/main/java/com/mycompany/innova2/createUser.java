@@ -5,6 +5,7 @@
 package com.mycompany.innova2;
 
 import MetodosSql.MetodosSql;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +20,7 @@ public class createUser extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    MetodosSql metodos = new MetodosSql(); 
+    MetodosSql metodos = new MetodosSql();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +57,11 @@ public class createUser extends javax.swing.JFrame {
         jLabel3.setText("Contraseña");
 
         btnEntrar.setText("Inicia Sesion");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +120,28 @@ public class createUser extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+
+        String busqueda_usuario = metodos.buscarUsuarioRegistrado(txtUser.getText(), txtPassword.getText());
+
+        if (txtUser.getText().equals("root") && txtPassword.getText().equals("123456789")) {
+            JOptionPane.showMessageDialog(this, "Bienvenido Eres Administrador");
+            sistema ventana = new sistema();
+            ventana.labelName.setText("Administrador");
+            ventana.setVisible(true);
+            this.dispose();
+        } else if (busqueda_usuario.equals("usuario Encontrado")) {
+            String busqueda_nombre = metodos.buscarNombre(txtUser.getText());
+            JOptionPane.showMessageDialog(this, "Bienvenido /n" + busqueda_nombre);
+            sistema ventana = new sistema();
+            ventana.setVisible(true);
+            ventana.labelName.setText(busqueda_nombre);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "no encontrado por favor registrese");
+        }  // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
