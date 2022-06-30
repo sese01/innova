@@ -15,6 +15,7 @@ public class userSesion extends javax.swing.JFrame {
      */
     public userSesion() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -60,6 +61,11 @@ public class userSesion extends javax.swing.JFrame {
         btnCreateUser.setText("Crear usuario");
 
         btnReturn.setText("Regresar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,8 +132,14 @@ public class userSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_emailTextActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        menuLogin ventana = new menuLogin();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnReturnActionPerformed
 
     /**
      * @param args the command line arguments
