@@ -4,6 +4,8 @@
  */
 package com.mycompany.innova2;
 
+import MetodosSql.MetodosSql;
+
 /**
  *
  * @author sese4
@@ -17,6 +19,7 @@ public class createUser extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    MetodosSql metodos = new MetodosSql(); 
 
     /**
      * This method is called from within the constructor to initialize the form.

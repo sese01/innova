@@ -4,6 +4,8 @@
  */
 package com.mycompany.innova2;
 
+import MetodosSql.MetodosSql;
+
 /**
  *
  * @author sese4
@@ -17,6 +19,9 @@ public class userSesion extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    
+   MetodosSql metodos = new MetodosSql();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +64,11 @@ public class userSesion extends javax.swing.JFrame {
         jLabel5.setText("Crear Usuario");
 
         btnCreateUser.setText("Crear usuario");
+        btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateUserActionPerformed(evt);
+            }
+        });
 
         btnReturn.setText("Regresar");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +150,11 @@ public class userSesion extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
+        
+        metodos.guardar(nameText.getText(), lastNameText.getText(), emailText.getText(), passwordText.getText());
+    }//GEN-LAST:event_btnCreateUserActionPerformed
 
     /**
      * @param args the command line arguments
