@@ -14,8 +14,7 @@ import java.sql.ResultSet;
  */
 public class MetodosSql {
 
-    public static ConexionBD conexion = new ConexionBD();
-
+    public static ConexionBD conexion = new ConexionBD()
     public static PreparedStatement sentencia_preparada;
     public static ResultSet resultado;
     public static String sql;
